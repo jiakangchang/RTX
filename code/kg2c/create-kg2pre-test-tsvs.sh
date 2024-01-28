@@ -8,6 +8,6 @@ kg2c_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"  # Tha
 kg2pre_tsv_dir="${kg2c_dir}/kg2pre_tsvs"
 
 tail -100000 ${kg2pre_tsv_dir}/nodes.tsv > ${kg2pre_tsv_dir}/nodes.tsv_TEMP
-mv ${kg2pre_tsv_dir}/nodes.tsv_TEMP ${kg2pre_tsv_dir}/nodes.tsv
+mv ${kg2pre_tsv_dir}/nodes.tsv_TEMP ${kg2pre_tsv_dir}/test_nodes.tsv
 tail -100000 ${kg2pre_tsv_dir}/edges.tsv > ${kg2pre_tsv_dir}/edges.tsv_TEMP
-mv ${kg2pre_tsv_dir}/edges.tsv_TEMP ${kg2pre_tsv_dir}/edges.tsv
+mv ${kg2pre_tsv_dir}/edges.tsv_TEMP ${kg2pre_tsv_dir}/test_edges.tsv

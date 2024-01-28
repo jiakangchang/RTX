@@ -198,8 +198,20 @@ def main():
         download_sri_nn_files()
 
     # First grab the SRI cluster IDs ('preferred'/canonical curies) for all KG2pre nodes from SRI NN RestAPI
-    kg2pre_node_ids = get_kg2pre_node_ids()
-    sri_node_id_to_cluster_id_map = get_sri_cluster_id_mappings(kg2pre_node_ids)
+    # kg2pre_node_ids = get_kg2pre_node_ids()
+    # sri_node_id_to_cluster_id_map = get_sri_cluster_id_mappings(kg2pre_node_ids)
+    
+    file_path = os.path.join(SYNONYMIZER_BUILD_DIR, "2_sri_node_ids_to_cluster_ids.json")
+
+    # Check if the file exists
+    if os.path.exists(file_path):
+        # Load json file into the dictionary
+        with open(file_path, 'r') as file:
+            sri_node_id_to_cluster_id_map = json.load(file)
+    else:
+        # If file does not exist, call the required functions
+        kg2pre_node_ids = get_kg2pre_node_ids()
+        sri_node_id_to_cluster_id_map = get_sri_cluster_id_mappings(kg2pre_node_ids)
 
     # Then build an SRI 'match graph' using the SRI NN bulk download
     sri_node_ids = create_match_nodes_sri(sri_node_id_to_cluster_id_map, args.test)

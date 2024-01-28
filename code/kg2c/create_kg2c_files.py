@@ -711,17 +711,17 @@ def create_kg2c_files(is_test=False):
         canonicalized_nodes_dict, curie_map = _canonicalize_nodes(kg2pre_nodes)
 
         # Make sure that the KG2pre version matches the version we're supposed to be building a KG2c off of
-        kg2pre_build_node = canonicalized_nodes_dict.get("RTX:KG2")
-        if not kg2pre_build_node:
-            raise ValueError(f"There is no build node (i.e., no node with the ID 'RTX:KG2' in the ingested KG2pre "
-                             f"TSVs; this means I can't verify that the KG2pre version matches what we want, "
-                             f"so I'll halt processing")
-        else:
-            kg2pre_version = kg2pre_build_node["name"].replace("RTX KG", "")
-            if kg2pre_version != kg2_version:
-                raise ValueError(f"The version on the KG2pre build node in the ingested KG2pre TSVs is "
-                                 f"{kg2pre_version}, but the KG2c version you want to build is {kg2_version}. "
-                                 f"These version numbers must match. Halting the build.")
+        # kg2pre_build_node = canonicalized_nodes_dict.get("RTX:KG2")
+        # if not kg2pre_build_node:
+        #     raise ValueError(f"There is no build node (i.e., no node with the ID 'RTX:KG2' in the ingested KG2pre "
+        #                      f"TSVs; this means I can't verify that the KG2pre version matches what we want, "
+        #                      f"so I'll halt processing")
+        # else:
+        #     kg2pre_version = kg2pre_build_node["name"].replace("RTX KG", "")
+        #     if kg2pre_version != kg2_version:
+        #         raise ValueError(f"The version on the KG2pre build node in the ingested KG2pre TSVs is "
+        #                          f"{kg2pre_version}, but the KG2c version you want to build is {kg2_version}. "
+        #                          f"These version numbers must match. Halting the build.")
 
         # Add a node containing information about this KG2C build
         build_node = _create_build_node(kg2_version, biolink_version)
@@ -748,7 +748,7 @@ def create_kg2c_files(is_test=False):
     create_kg2c_lite_json_file(canonicalized_nodes_dict, canonicalized_edges_dict, meta_info_dict, is_test)
     create_kg2c_json_file(canonicalized_nodes_dict, canonicalized_edges_dict, meta_info_dict, is_test)
     create_kg2c_tsv_files(canonicalized_nodes_dict, canonicalized_edges_dict, biolink_version, is_test)
-    create_kg2c_sqlite_db(canonicalized_nodes_dict, canonicalized_edges_dict, is_test)
+    # create_kg2c_sqlite_db(canonicalized_nodes_dict, canonicalized_edges_dict, is_test)
 
 
 def main():

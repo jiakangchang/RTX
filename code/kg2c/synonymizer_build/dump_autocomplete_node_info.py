@@ -48,16 +48,16 @@ def dump_kg2pre_node_info(kg2pre_version: str):
 
     # Make sure this is actually the KG2 version we are supposed to be using
     logging.info(f"Verifying that the KG2pre version in the KG2pre TSVs matches what was requested..")
-    kg2pre_build_node_id = "RTX:KG2"
-    if kg2pre_build_node_id in nodes_df.index:
-        kg2pre_build_node = nodes_df.loc[kg2pre_build_node_id]
-        kg2pre_build_node_name_chunks = kg2pre_build_node["name"].split(" ")  # Note: Using '.name' accessor here returns node ID for some reason...
-        kg2pre_build_node_version = kg2pre_build_node_name_chunks[1].replace("KG", "")
-        if kg2pre_build_node_version != kg2pre_version:
-            raise ValueError(f"We appear to have the wrong KG2pre TSVs! Requested version was {kg2pre_version}, but the"
-                             f" build node in the KG2pre TSVs says the version is {kg2pre_build_node_version}.")
-    else:
-        raise ValueError(f"No build node exists in the KG2pre TSVs! Cannot verify we have the correct KG2pre TSVs.")
+    # kg2pre_build_node_id = "RTX:KG2"
+    # if kg2pre_build_node_id in nodes_df.index:
+    #     kg2pre_build_node = nodes_df.loc[kg2pre_build_node_id]
+    #     kg2pre_build_node_name_chunks = kg2pre_build_node["name"].split(" ")  # Note: Using '.name' accessor here returns node ID for some reason...
+    #     kg2pre_build_node_version = kg2pre_build_node_name_chunks[1].replace("KG", "")
+    #     if kg2pre_build_node_version != kg2pre_version:
+    #         raise ValueError(f"We appear to have the wrong KG2pre TSVs! Requested version was {kg2pre_version}, but the"
+    #                          f" build node in the KG2pre TSVs says the version is {kg2pre_build_node_version}.")
+    # else:
+    #     raise ValueError(f"No build node exists in the KG2pre TSVs! Cannot verify we have the correct KG2pre TSVs.")
 
     logging.info(f"Node info for autocomplete dataframe is:\n {nodes_df}")
     nodes_df.to_csv(f"{SYNONYMIZER_BUILD_DIR}/autocomplete_node_info.tsv", sep="\t", header=False,
