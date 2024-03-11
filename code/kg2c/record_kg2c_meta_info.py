@@ -198,7 +198,7 @@ def record_meta_kg_info(is_test: bool):
     sqlite_file_name = f"kg2c.sqlite"
     fda_approved_file_name = f"fda_approved_drugs.pickle"
     # Initiate a BiolinkHelper for the proper Biolink model version
-    with open("kg2c_config.json") as config_file:
+    with open(f"{KG2C_DIR}/kg2c_config.json") as config_file:
         config_info = json.load(config_file)
     bh = BiolinkHelper(config_info["biolink_version"])
 
